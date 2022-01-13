@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Images are numpy arrays &#8212; Image analysis in Python</title>
+    <title>Images are numpy arrays &#8212; scikit-image Tutorials</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,59 +22,37 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_customize.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/output_cells.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/badge_only.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/docversions.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/underscore-1.3.1.js"></script>
-    <script src="../_static/searchtools.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/random.js"></script>
-    <script src="../_static/jquery-1.11.1.js"></script>
-    <script src="../_static/websupport.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <script src="../_static/js/modernizr.min.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Image filtering" href="1_image_filters.html" />
+    <link rel="prev" title="An introduction to scikit-image" href="../introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -91,44 +69,110 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo.png" class="logo" alt="logo">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
       
       
-      <h1 class="site-logo" id="site-title">Image analysis in Python</h1>
+      <img src="../_static/skimage-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">scikit-image Tutorials</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
-   Images are numpy arrays
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../introduction.html">
+   An introduction to scikit-image
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Images are numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_image_filters.html">
+     Image filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_morphological_operations.html">
+     Morphological operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_segmentation.html">
+     Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_tophat_filters.html">
+     Correcting brightness nonuniformity with tophat filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_watershed_tricks.html">
+     Useful segmentation tricks with the watershed transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="three_dimensional_image_processing.html">
+     Introduction to three-dimensional image processing
+    </a>
+   </li>
+  </ul>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="1_image_filters.html">
-   Image filtering
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../applications.html">
+   scikit-image applications
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="3_morphological_operations.html">
-   Morphological operations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="4_segmentation.html">
-   Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="three_dimensional_image_processing.html">
-   Introduction to three-dimensional image processing
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv0_chromosomes.html">
+     Measuring chromatin fluorescence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv1_lesion-quantification.html">
+     Quantifying spinal cord regeneration in zebrafish
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv2_microarray.html">
+     DNA microarray processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv3_panorama-stitching.html">
+     scikit-image advanced panorama tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv4_warping.html">
+     Warping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv5_pores.html">
+     Diatom analysis
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -136,7 +180,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
 
 </div>
@@ -171,12 +215,12 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/lectures/00_images_are_arrays.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/lectures/00_images_are_arrays.md.txt"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -191,32 +235,15 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/lectures/00_images_are_arrays.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-shapes-and-their-meanings">
@@ -237,18 +264,16 @@
   <a class="reference internal nav-link" href="#image-i-o">
    Image I/O
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aside-enumerate">
-     Aside:
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       enumerate
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aside-enumerate">
+   Aside:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     enumerate
+    </span>
+   </code>
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-class-exercize-exercise-draw-the-letter-h-span">
@@ -277,20 +302,79 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Images are numpy arrays</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-shapes-and-their-meanings">
+   Other shapes, and their meanings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-images-using-matplotlib">
+   Displaying images using matplotlib
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-types-and-image-values">
+   Data types and image values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-i-o">
+   Image I/O
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aside-enumerate">
+   Aside:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     enumerate
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-class-exercize-exercise-draw-the-letter-h-span">
+   <span class="exercize">
+    Exercise: draw the letter H
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-class-exercize-exercise-visualizing-rgb-channels-span">
+   <span class="exercize">
+    Exercise: visualizing RGB channels
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-convert-to-grayscale-black-and-white">
+   Exercise: Convert to grayscale (“black and white”)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div style='font-size: 200%; line-height: 2;'>
-To participate, you'll need to git clone (or download the .zip from GitHub):
-<p>https://github.com/scikit-image/skimage-tutorials</p>
+  <div class="cell tag_remove-input tag_remove-output docutils container">
 </div>
-<p>You can do that in git using:</p>
-<pre>git clone --depth=1 https://github.com/scikit-image/skimage-tutorials</pre>
-<div style='font-size: 200%; line-height: 1.5;'>
-If you have already cloned the material, please issue `git pull` now and reload the notebook to ensure that you have the latest updates.
-</div><div class="cell tag_remove-input tag_remove-output docutils container">
-</div>
-<div class="section" id="images-are-numpy-arrays">
+<div class="tex2jax_ignore mathjax_ignore section" id="images-are-numpy-arrays">
 <h1>Images are numpy arrays<a class="headerlink" href="#images-are-numpy-arrays" title="Permalink to this headline">¶</a></h1>
 <p>Images are represented in <code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> using standard <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays.  This allows maximum inter-operability with other libraries in the scientific Python ecosystem, such as <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <p>Let’s see how to build a grayscale image as a 2D array:</p>
@@ -307,7 +391,7 @@ If you have already cloned the material, please issue `git pull` now and reload 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00_images_are_arrays_4_0.png" src="../_images/00_images_are_arrays_4_0.png" />
+<img alt="../_images/00_images_are_arrays_3_0.png" src="../_images/00_images_are_arrays_3_0.png" />
 </div>
 </div>
 <p>The same holds for “real-world” images:</p>
@@ -331,7 +415,7 @@ dtype: uint8
 shape: (303, 384)
 </pre></div>
 </div>
-<img alt="../_images/00_images_are_arrays_6_1.png" src="../_images/00_images_are_arrays_6_1.png" />
+<img alt="../_images/00_images_are_arrays_5_1.png" src="../_images/00_images_are_arrays_5_1.png" />
 </div>
 </div>
 <p>A color image is a 3D array, where the last dimension has size 3 and represents the red, green, and blue channels:</p>
@@ -350,7 +434,7 @@ shape: (303, 384)
 Values min/max: 0 231
 </pre></div>
 </div>
-<img alt="../_images/00_images_are_arrays_8_1.png" src="../_images/00_images_are_arrays_8_1.png" />
+<img alt="../_images/00_images_are_arrays_7_1.png" src="../_images/00_images_are_arrays_7_1.png" />
 </div>
 </div>
 <p>These are <em>just NumPy arrays</em>. E.g., we can make a red square by using standard array slicing and manipulation:</p>
@@ -362,7 +446,7 @@ Values min/max: 0 231
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00_images_are_arrays_10_0.png" src="../_images/00_images_are_arrays_10_0.png" />
+<img alt="../_images/00_images_are_arrays_9_0.png" src="../_images/00_images_are_arrays_9_0.png" />
 </div>
 </div>
 <p>Images can also include transparent regions by adding a 4th dimension, called an <em>alpha layer</em>.</p>
@@ -424,7 +508,7 @@ Values min/max: 0 231
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00_images_are_arrays_15_0.png" src="../_images/00_images_are_arrays_15_0.png" />
+<img alt="../_images/00_images_are_arrays_14_0.png" src="../_images/00_images_are_arrays_14_0.png" />
 </div>
 </div>
 <p>For more on plotting, see the <a class="reference external" href="https://matplotlib.org/gallery/index.html#images-contours-and-fields">Matplotlib documentation</a> and <a class="reference external" href="https://matplotlib.org/api/pyplot_summary.html">pyplot API</a>.</p>
@@ -458,7 +542,7 @@ data-type of the array.</p>
 Linear1: uint8 0 255
 </pre></div>
 </div>
-<img alt="../_images/00_images_are_arrays_18_1.png" src="../_images/00_images_are_arrays_18_1.png" />
+<img alt="../_images/00_images_are_arrays_17_1.png" src="../_images/00_images_are_arrays_17_1.png" />
 </div>
 </div>
 <p>The library is designed in such a way that any data-type is allowed as input,
@@ -491,10 +575,14 @@ type, min, max: float64 0.0 0.9058823529411765
 </div>
 </div>
 <p>Your code would then typically look like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">any_image</span><span class="p">):</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">any_image</span><span class="p">):</span>
    <span class="n">float_image</span> <span class="o">=</span> <span class="n">img_as_float</span><span class="p">(</span><span class="n">any_image</span><span class="p">)</span>
    <span class="c1"># Proceed, knowing image is in [0, 1]</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>We recommend using the floating point representation, given that
 <code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> mostly uses that format internally.</p>
@@ -525,7 +613,7 @@ uint8
 0 255
 </pre></div>
 </div>
-<img alt="../_images/00_images_are_arrays_24_1.png" src="../_images/00_images_are_arrays_24_1.png" />
+<img alt="../_images/00_images_are_arrays_25_1.png" src="../_images/00_images_are_arrays_25_1.png" />
 </div>
 </div>
 <p>We also have the ability to load multiple images, or multi-layer TIFF images:</p>
@@ -589,17 +677,18 @@ uint8
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ic</span><span class="p">):</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">ic</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-    
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00_images_are_arrays_27_0.png" src="../_images/00_images_are_arrays_27_0.png" />
+<img alt="../_images/00_images_are_arrays_28_0.png" src="../_images/00_images_are_arrays_28_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="aside-enumerate">
-<h3>Aside: <code class="docutils literal notranslate"><span class="pre">enumerate</span></code><a class="headerlink" href="#aside-enumerate" title="Permalink to this headline">¶</a></h3>
+<h2>Aside: <code class="docutils literal notranslate"><span class="pre">enumerate</span></code><a class="headerlink" href="#aside-enumerate" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">enumerate</span></code> gives us each element in a container, along with its position.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -624,7 +713,6 @@ The animal in position 2 is leopard
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="span-class-exercize-exercise-draw-the-letter-h-span">
 <h2><span class="exercize">Exercise: draw the letter H</span><a class="headerlink" href="#span-class-exercize-exercise-draw-the-letter-h-span" title="Permalink to this headline">¶</a></h2>
 <p>Define a function that takes as input an RGB image and a pair of coordinates (row, column), and returns a copy with a green letter H overlaid at those coordinates. The coordinates point to the top-left corner of the H.</p>
@@ -634,10 +722,10 @@ The animal in position 2 is leopard
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_H</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
+
     <span class="o">...</span>
-    
-    <span class="k">return</span> <span class="n">out</span> 
+
+    <span class="k">return</span> <span class="n">out</span>
 </pre></div>
 </div>
 </div>
@@ -676,7 +764,7 @@ The animal in position 2 is leopard
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
 <span class="p">(</span><span class="n">ax_r</span><span class="p">,</span> <span class="n">ax_g</span><span class="p">,</span> <span class="n">ax_b</span><span class="p">,</span> <span class="n">ax_color</span><span class="p">)</span> <span class="o">=</span> <span class="n">axes</span>
-    
+
 <span class="n">ax_r</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">ax_r</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;red channel&#39;</span><span class="p">)</span>
 
@@ -703,13 +791,13 @@ The animal in position 2 is leopard
 <span class="n">green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
 
-<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle_perimeter</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">red</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">red</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle_perimeter</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">green</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">green</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">circle_perimeter</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">blue</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">blue</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -720,15 +808,7 @@ The animal in position 2 is leopard
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-18-4feb18b15cc3&gt;:7: FutureWarning: `draw.circle` is deprecated in favor of `draw.disk`.`draw.circle` will be removed in version 0.19
-  r, c = draw.circle(100, 100, 100)
-&lt;ipython-input-18-4feb18b15cc3&gt;:10: FutureWarning: `draw.circle` is deprecated in favor of `draw.disk`.`draw.circle` will be removed in version 0.19
-  r, c = draw.circle(100, 200, 100)
-&lt;ipython-input-18-4feb18b15cc3&gt;:13: FutureWarning: `draw.circle` is deprecated in favor of `draw.disk`.`draw.circle` will be removed in version 0.19
-  r, c = draw.circle(200, 150, 100)
-</pre></div>
-</div>
-<img alt="../_images/00_images_are_arrays_38_1.png" src="../_images/00_images_are_arrays_38_1.png" />
+<img alt="../_images/00_images_are_arrays_39_0.png" src="../_images/00_images_are_arrays_39_0.png" />
 </div>
 </div>
 </div>
@@ -764,60 +844,48 @@ Y = 0.2126R + 0.7152G + 0.0722B
 </div>
 </div>
 </div>
-<div class="toctree-wrapper compound">
-</div>
 </div>
 </div>
 
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./lectures"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="1_image_filters.html" title="next page">Image filtering</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">An introduction to scikit-image</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="1_image_filters.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Image filtering</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By The scikit-image contributors<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By the scikit-image community<br/>
+    
+        &copy; Copyright 2021, the scikit-image community.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

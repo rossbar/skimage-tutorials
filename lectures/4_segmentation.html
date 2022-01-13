@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Segmentation &#8212; Image analysis in Python</title>
+    <title>Segmentation &#8212; scikit-image Tutorials</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,58 +22,35 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_customize.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/output_cells.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/badge_only.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/docversions.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/underscore-1.3.1.js"></script>
-    <script src="../_static/searchtools.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/random.js"></script>
-    <script src="../_static/jquery-1.11.1.js"></script>
-    <script src="../_static/websupport.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <script src="../_static/js/modernizr.min.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction to three-dimensional image processing" href="three_dimensional_image_processing.html" />
+    <link rel="next" title="Correcting brightness nonuniformity with tophat filters" href="5_tophat_filters.html" />
     <link rel="prev" title="Morphological operations" href="3_morphological_operations.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -90,44 +67,110 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo.png" class="logo" alt="logo">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
       
       
-      <h1 class="site-logo" id="site-title">Image analysis in Python</h1>
+      <img src="../_static/skimage-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">scikit-image Tutorials</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="00_images_are_arrays.html">
-   Images are numpy arrays
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../introduction.html">
+   An introduction to scikit-image
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_images_are_arrays.html">
+     Images are numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_image_filters.html">
+     Image filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_morphological_operations.html">
+     Morphological operations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_tophat_filters.html">
+     Correcting brightness nonuniformity with tophat filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_watershed_tricks.html">
+     Useful segmentation tricks with the watershed transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="three_dimensional_image_processing.html">
+     Introduction to three-dimensional image processing
+    </a>
+   </li>
+  </ul>
  </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="1_image_filters.html">
-   Image filtering
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../applications.html">
+   scikit-image applications
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="3_morphological_operations.html">
-   Morphological operations
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="three_dimensional_image_processing.html">
-   Introduction to three-dimensional image processing
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv0_chromosomes.html">
+     Measuring chromatin fluorescence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv1_lesion-quantification.html">
+     Quantifying spinal cord regeneration in zebrafish
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv2_microarray.html">
+     DNA microarray processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv3_panorama-stitching.html">
+     scikit-image advanced panorama tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv4_warping.html">
+     Warping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv5_pores.html">
+     Diatom analysis
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -135,7 +178,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
 
 </div>
@@ -170,12 +213,12 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/lectures/4_segmentation.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/lectures/4_segmentation.md.txt"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -190,32 +233,15 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/lectures/4_segmentation.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#separating-an-image-into-one-or-more-regions-of-interest">
@@ -320,14 +346,126 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Segmentation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#separating-an-image-into-one-or-more-regions-of-interest">
+   Separating an image into one or more regions of interest.
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#segmentation-contains-two-major-sub-fields">
+     Segmentation contains two major sub-fields
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thresholding">
+   Thresholding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#histograms">
+     Histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#experimentation-supervised-thresholding">
+     Experimentation: supervised thresholding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#experimentation-unsupervised-thresholding">
+     Experimentation: unsupervised thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supervised-segmentation">
+   Supervised segmentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#active-contour-segmentation">
+     Active contour segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-walker">
+     Random walker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flood-fill">
+   Flood fill
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-segmentation">
+   Unsupervised segmentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slic">
+     SLIC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chan-vese">
+     Chan-Vese
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#felzenszwalb">
+     Felzenszwalb
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-regions-with-a-region-adjacency-graph-rag">
+   Combining regions with a Region Adjacency Graph (RAG)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finally-cut-the-graph">
+     Finally, cut the graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-cat-picture">
+   Exercise: Cat picture
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="cell tag_remove-input tag_remove-output docutils container">
 </div>
-<div class="section" id="segmentation">
+<div class="tex2jax_ignore mathjax_ignore section" id="segmentation">
 <h1>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this headline">¶</a></h1>
-<hr class="docutils" />
 <div class="section" id="separating-an-image-into-one-or-more-regions-of-interest">
 <h2>Separating an image into one or more regions of interest.<a class="headerlink" href="#separating-an-image-into-one-or-more-regions-of-interest" title="Permalink to this headline">¶</a></h2>
 <p>Everyone has heard or seen Photoshop or a similar graphics editor take a person from one image and place them into another.  The first step of doing this is <em>identifying where that person is in the source image</em>.</p>
@@ -392,7 +530,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_5_0.png" src="../_images/4_segmentation_5_0.png" />
+<img alt="../_images/4_segmentation_6_0.png" src="../_images/4_segmentation_6_0.png" />
 </div>
 </div>
 <div class="section" id="histograms">
@@ -407,7 +545,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_7_0.png" src="../_images/4_segmentation_7_0.png" />
+<img alt="../_images/4_segmentation_8_0.png" src="../_images/4_segmentation_8_0.png" />
 </div>
 </div>
 </div>
@@ -455,7 +593,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_15_0.png" src="../_images/4_segmentation_15_0.png" />
+<img alt="../_images/4_segmentation_16_0.png" src="../_images/4_segmentation_16_0.png" />
 </div>
 </div>
 <p>The contrast is pretty good in this image for her head against the background, so we will simply convert to grayscale with <code class="docutils literal notranslate"><span class="pre">rgb2gray</span></code>.</p>
@@ -467,7 +605,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_17_0.png" src="../_images/4_segmentation_17_0.png" />
+<img alt="../_images/4_segmentation_18_0.png" src="../_images/4_segmentation_18_0.png" />
 </div>
 </div>
 <p>We will use two methods, which segment using very different approaches:</p>
@@ -512,7 +650,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_22_0.png" src="../_images/4_segmentation_22_0.png" />
+<img alt="../_images/4_segmentation_23_0.png" src="../_images/4_segmentation_23_0.png" />
 </div>
 </div>
 </div>
@@ -547,12 +685,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-13-aa063a645039&gt;:4: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_50835/1867692464.py:4: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   astronaut_labels[points[:, 1].astype(np.int), points[:, 0].astype(np.int)] = 2
 </pre></div>
 </div>
-<img alt="../_images/4_segmentation_27_1.png" src="../_images/4_segmentation_27_1.png" />
+<img alt="../_images/4_segmentation_28_1.png" src="../_images/4_segmentation_28_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -562,8 +700,8 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-14-9ea8609ff9ab&gt;:1: UserWarning: The probability range is outside [0, 1] given the tolerance `prob_tol`. Consider decreasing `beta` and/or decreasing `tol`.
-  astronaut_segmented = seg.random_walker(astronaut_gray, astronaut_labels)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/skimage/_shared/utils.py:293: UserWarning: The probability range is outside [0, 1] given the tolerance `prob_tol`. Consider decreasing `beta` and/or decreasing `tol`.
+  return func(*args, **kwargs)
 </pre></div>
 </div>
 </div>
@@ -577,7 +715,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_29_0.png" src="../_images/4_segmentation_29_0.png" />
+<img alt="../_images/4_segmentation_30_0.png" src="../_images/4_segmentation_30_0.png" />
 </div>
 </div>
 </div>
@@ -603,7 +741,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_33_0.png" src="../_images/4_segmentation_33_0.png" />
+<img alt="../_images/4_segmentation_34_0.png" src="../_images/4_segmentation_34_0.png" />
 </div>
 </div>
 <p>Not ideal! The flood runs away into the background through the right earlobe.</p>
@@ -646,7 +784,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_37_0.png" src="../_images/4_segmentation_37_0.png" />
+<img alt="../_images/4_segmentation_38_0.png" src="../_images/4_segmentation_38_0.png" />
 </div>
 </div>
 </div>
@@ -663,12 +801,6 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-21-87307e8d394f&gt;:2: FutureWarning: skimage.measure.label&#39;s indexing starts from 0. In future version it will start from 1. To disable this warning, explicitely set the `start_label` parameter to 1.
-  astronaut_slic = seg.slic(astronaut)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,12 +810,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-22-7da7ea5bec30&gt;:2: FutureWarning: The new recommended value for bg_label is 0. Until version 0.19, the default bg_label value is -1. From version 0.19, the bg_label default value will be 0. To avoid this warning, please explicitly set bg_label value.
-  image_show(color.label2rgb(astronaut_slic, astronaut, kind=&#39;avg&#39;));
-Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
-</pre></div>
-</div>
-<img alt="../_images/4_segmentation_40_1.png" src="../_images/4_segmentation_40_1.png" />
+<img alt="../_images/4_segmentation_41_0.png" src="../_images/4_segmentation_41_0.png" />
 </div>
 </div>
 <p>We’ve reduced this image from 512*512 = 262,000 pixels down to 100 regions!</p>
@@ -708,7 +835,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_44_0.png" src="../_images/4_segmentation_44_0.png" />
+<img alt="../_images/4_segmentation_45_0.png" src="../_images/4_segmentation_45_0.png" />
 </div>
 </div>
 <p>Chan-Vese has a number of paremeters, which you can try out!  In the interest of time, we may move on.</p>
@@ -730,7 +857,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_49_0.png" src="../_images/4_segmentation_49_0.png" />
+<img alt="../_images/4_segmentation_50_0.png" src="../_images/4_segmentation_50_0.png" />
 </div>
 </div>
 <p>Whoa, lots of regions!  How many is that?</p>
@@ -771,7 +898,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 </div>
 <p>Now we show just one application of a very useful tool - <code class="docutils literal notranslate"><span class="pre">skimage.measure.regionprops</span></code> - to determine the centroid of each labeled region and pass that to the graph.</p>
 <p><code class="docutils literal notranslate"><span class="pre">regionprops</span></code> has many, many other uses; see the API documentation for all of the features that can be quantified per-region!<br />
-<a class="reference external" href="http://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops">http://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops</a></p>
+http://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">skimage.measure</span> <span class="k">as</span> <span class="nn">measure</span>
@@ -884,62 +1011,51 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_segmentation_70_0.png" src="../_images/4_segmentation_70_0.png" />
+<img alt="../_images/4_segmentation_71_0.png" src="../_images/4_segmentation_71_0.png" />
 </div>
 </div>
 </div>
 </div>
 
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./lectures"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="3_morphological_operations.html" title="previous page">Morphological operations</a>
-    <a class='right-next' id="next-link" href="three_dimensional_image_processing.html" title="next page">Introduction to three-dimensional image processing</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="3_morphological_operations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Morphological operations</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="5_tophat_filters.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Correcting brightness nonuniformity with tophat filters</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By The scikit-image contributors<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By the scikit-image community<br/>
+    
+        &copy; Copyright 2021, the scikit-image community.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

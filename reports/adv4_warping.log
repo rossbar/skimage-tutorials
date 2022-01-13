@@ -1,0 +1,93 @@
+Traceback (most recent call last):
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def rectify(xy):
+    x = xy[:, 0]
+    y = xy[:, 1]
+    
+    # We need to provide the backward mapping, from the target
+    # image to the source image.
+    HH = np.linalg.inv(H)
+    
+    # You must fill in your code here to take
+    # the matrix HH (given above) and to transform
+    # each coordinate to its new position.
+    # 
+    # Hint: handy functions are
+    #
+    # - np.dot (matrix multiplication)
+    # - np.ones_like (make an array of ones the same shape as another array)
+    # - np.column_stack
+    # - A.T -- type .T after a matrix to transpose it
+    # - x.reshape -- reshapes the array x
+    
+    # ... your code
+    # ... your code
+    # ... your code
+    # ... your code
+    
+    return ...
+
+    
+image = plt.imread('images/chapel_floor.png')
+out = transform.warp(image, rectify, output_shape=(400, 400))
+
+f, (ax0, ax1) = plt.subplots(1, 2, figsize=(8, 4))
+ax0.imshow(image)
+ax1.imshow(out)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Input [0;32mIn [19][0m, in [0;36m<module>[0;34m[0m
+[1;32m      9[0m     [38;5;66;03m# You must fill in your code here to take[39;00m
+[1;32m     10[0m     [38;5;66;03m# the matrix HH (given above) and to transform[39;00m
+[1;32m     11[0m     [38;5;66;03m# each coordinate to its new position.[39;00m
+[0;32m   (...)[0m
+[1;32m     23[0m     [38;5;66;03m# ... your code[39;00m
+[1;32m     24[0m     [38;5;66;03m# ... your code[39;00m
+[1;32m     26[0m     [38;5;28;01mreturn[39;00m [38;5;241m.[39m[38;5;241m.[39m[38;5;241m.[39m
+[0;32m---> 29[0m image [38;5;241m=[39m [43mplt[49m[38;5;241;43m.[39;49m[43mimread[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mimages/chapel_floor.png[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m     30[0m out [38;5;241m=[39m transform[38;5;241m.[39mwarp(image, rectify, output_shape[38;5;241m=[39m([38;5;241m400[39m, [38;5;241m400[39m))
+[1;32m     32[0m f, (ax0, ax1) [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m, [38;5;241m2[39m, figsize[38;5;241m=[39m([38;5;241m8[39m, [38;5;241m4[39m))
+
+File [0;32m~/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/matplotlib/pyplot.py:2139[0m, in [0;36mimread[0;34m(fname, format)[0m
+[1;32m   2137[0m [38;5;129m@_copy_docstring_and_deprecators[39m(matplotlib[38;5;241m.[39mimage[38;5;241m.[39mimread)
+[1;32m   2138[0m [38;5;28;01mdef[39;00m [38;5;21mimread[39m(fname, [38;5;28mformat[39m[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m-> 2139[0m     [38;5;28;01mreturn[39;00m [43mmatplotlib[49m[38;5;241;43m.[39;49m[43mimage[49m[38;5;241;43m.[39;49m[43mimread[49m[43m([49m[43mfname[49m[43m,[49m[43m [49m[38;5;28;43mformat[39;49m[43m)[49m
+
+File [0;32m~/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/matplotlib/image.py:1560[0m, in [0;36mimread[0;34m(fname, format)[0m
+[1;32m   1558[0m                 response [38;5;241m=[39m io[38;5;241m.[39mBytesIO(response[38;5;241m.[39mread())
+[1;32m   1559[0m             [38;5;28;01mreturn[39;00m imread(response, [38;5;28mformat[39m[38;5;241m=[39mext)
+[0;32m-> 1560[0m [38;5;28;01mwith[39;00m [43mimg_open[49m[43m([49m[43mfname[49m[43m)[49m [38;5;28;01mas[39;00m image:
+[1;32m   1561[0m     [38;5;28;01mreturn[39;00m (_pil_png_to_float_array(image)
+[1;32m   1562[0m             [38;5;28;01mif[39;00m [38;5;28misinstance[39m(image, PIL[38;5;241m.[39mPngImagePlugin[38;5;241m.[39mPngImageFile) [38;5;28;01melse[39;00m
+[1;32m   1563[0m             pil_to_array(image))
+
+File [0;32m~/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/PIL/ImageFile.py:100[0m, in [0;36mImageFile.__init__[0;34m(self, fp, filename)[0m
+[1;32m     96[0m [38;5;28mself[39m[38;5;241m.[39mdecodermaxblock [38;5;241m=[39m MAXBLOCK
+[1;32m     98[0m [38;5;28;01mif[39;00m isPath(fp):
+[1;32m     99[0m     [38;5;66;03m# filename[39;00m
+[0;32m--> 100[0m     [38;5;28mself[39m[38;5;241m.[39mfp [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m[43mfp[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mrb[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m    101[0m     [38;5;28mself[39m[38;5;241m.[39mfilename [38;5;241m=[39m fp
+[1;32m    102[0m     [38;5;28mself[39m[38;5;241m.[39m_exclusive_fp [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'images/chapel_floor.png'
+FileNotFoundError: [Errno 2] No such file or directory: 'images/chapel_floor.png'
+

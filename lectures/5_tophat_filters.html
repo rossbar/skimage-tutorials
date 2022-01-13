@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Correcting brightness nonuniformity with tophat filters &#8212; scikit-image Tutorials</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Useful segmentation tricks with the watershed transform" href="6_watershed_tricks.html" />
+    <link rel="prev" title="Segmentation" href="4_segmentation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/skimage-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">scikit-image Tutorials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../introduction.html">
+   An introduction to scikit-image
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_images_are_arrays.html">
+     Images are numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_image_filters.html">
+     Image filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_morphological_operations.html">
+     Morphological operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_segmentation.html">
+     Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Correcting brightness nonuniformity with tophat filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_watershed_tricks.html">
+     Useful segmentation tricks with the watershed transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="three_dimensional_image_processing.html">
+     Introduction to three-dimensional image processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../applications.html">
+   scikit-image applications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv0_chromosomes.html">
+     Measuring chromatin fluorescence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv1_lesion-quantification.html">
+     Quantifying spinal cord regeneration in zebrafish
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv2_microarray.html">
+     DNA microarray processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv3_panorama-stitching.html">
+     scikit-image advanced panorama tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv4_warping.html">
+     Warping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv5_pores.html">
+     Diatom analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lectures/5_tophat_filters.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-libraries-and-display-functions">
+   Set up libraries and display functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-display-the-test-data">
+   Load and display the test data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background-estimation">
+   Background estimation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-size-selection">
+     Filter size selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#potential-problems">
+   Potential problems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes-on-speed">
+   Notes on speed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-threshold-methods">
+   Review of threshold methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-threshold">
+     Manual threshold
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-threshold-estimation-using-histograms">
+     Automatic threshold estimation using histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adaptive-thresholds">
+     Adaptive thresholds
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Correcting brightness nonuniformity with tophat filters</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-libraries-and-display-functions">
+   Set up libraries and display functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-display-the-test-data">
+   Load and display the test data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background-estimation">
+   Background estimation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-size-selection">
+     Filter size selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#potential-problems">
+   Potential problems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes-on-speed">
+   Notes on speed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-threshold-methods">
+   Review of threshold methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-threshold">
+     Manual threshold
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-threshold-estimation-using-histograms">
+     Automatic threshold estimation using histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adaptive-thresholds">
+     Adaptive thresholds
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="correcting-brightness-nonuniformity-with-tophat-filters">
+<h1>Correcting brightness nonuniformity with tophat filters<a class="headerlink" href="#correcting-brightness-nonuniformity-with-tophat-filters" title="Permalink to this headline">¶</a></h1>
+<p>Thresholding, usually the first image segmentation technique to be taught, labels individual pixels based on intensity. No information
+from a surrounding region is used.</p>
+<p>Basic concepts of segmentation, including thresholding, for skimage are introduced <a class="reference external" href="https://scikit-image.org/docs/0.14.x/user_guide/tutorial_segmentation.html">here</a> and <a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_niblack_sauvola.html">here</a> and <a class="reference external" href="https://github.com/scikit-image/skimage-tutorials/blob/main/lectures/solutions/4_segmentation.ipynb">here</a></p>
+<p>In this tutorial we’ll focus on extending the classical thresholding techniques via processes that correct nonuniformity. Brightness nonuniformity is a common problem in many forms of imaging, with varying causes. Having a collection of tools to help deal with nonuniformity can simplify subsequent analysis steps considerably.</p>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>The <em>page</em> data, shown below, contains some scanned text and the aim is to select a threshold that separates printing from paper (dark from light). The tutorials linked above introduce manual selection, selection based on histograms, and adaptive thresholding, where a different threshold is selected for each pixel based on parameters of the local neighborhood. The results of these methods are shown at the end of the tutorial for reference.</p>
+<p>The approach we will introduce is similar to adaptive filtering, but is built using existing filtering procedures to which the manual or histogram approaches can be applied</p>
+</div>
+<div class="section" id="set-up-libraries-and-display-functions">
+<h2>Set up libraries and display functions<a class="headerlink" href="#set-up-libraries-and-display-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">skimage.data</span> <span class="k">as</span> <span class="nn">data</span>
+<span class="kn">import</span> <span class="nn">skimage.segmentation</span> <span class="k">as</span> <span class="nn">seg</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">draw</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">color</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">exposure</span>
+<span class="kn">import</span> <span class="nn">skimage.morphology</span> <span class="k">as</span> <span class="nn">morph</span>
+
+
+<span class="k">def</span> <span class="nf">image_show</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">ncols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-and-display-the-test-data">
+<h2>Load and display the test data<a class="headerlink" href="#load-and-display-the-test-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+<span class="n">image_show</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_4_1.png" src="../_images/5_tophat_filters_4_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="background-estimation">
+<h2>Background estimation<a class="headerlink" href="#background-estimation" title="Permalink to this headline">¶</a></h2>
+<p>The lower left of the image above is clearly darker than the top right. In this case it is impossible to select a threshold that retains all the text on the right while leaving the background in the lower left clear - see <a class="reference external" href="#manual">Manual threshold</a>. The <a class="reference external" href="#automatic">histogram</a> methods have the same problem, with varying levels of blackness in the lower left. The <a class="reference external" href="#adaptive">adaptive</a> methods produce more uniform results, possibly with other artifacts.</p>
+<p>An alternative to the adaptive approach is to estimate the background intensity and remove it.</p>
+<p>This approach can work if the following conditions are met:</p>
+<ol class="simple">
+<li><p>The relative brightness of the objects of interest and the background is consistent - in this example the text is always darker than the local bacground.</p></li>
+<li><p>The size of the foreground features don’t vary too much</p></li>
+</ol>
+<p>A classical way to estimate background brightness and remove it is via a morphological <em>tophat</em> filter. A <em>black tophat</em> filter removes bright backgrounds (enhancing dark objects) while a <em>white tophat</em> filter removes dark backgrounds. A black tophat filter is constructed by subtracting the image from a morphologial closing of the image. A white tophat filter subtracts a morphological opening from the image. As described elsewhere, a morphological closing is a dilation (shrinking dark features) followed by an erosion (shrinking bright features).</p>
+<p><em>skimage</em> provides tophat filter functions, but we will begin by looking at the <em>closing</em> operation to understand the size of kernel we need and explore speed tradeoffs.</p>
+<div class="section" id="filter-size-selection">
+<h3>Filter size selection<a class="headerlink" href="#filter-size-selection" title="Permalink to this headline">¶</a></h3>
+<p>Lets start with a tiny filter, defined by the <em>selem</em> argument, and work our way up. We’re using rectangle filters because they are much faster, for reasons we’ll get to later.</p>
+<p>We can still see some text below, so this filter is too small.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_show</span><span class="p">(</span><span class="n">morph</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">morph</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_50888/225175167.py:1: FutureWarning: `selem` is a deprecated argument name for `closing`. It will be removed in version 1.0.Please use `footprint` instead.
+  image_show(morph.closing(text, selem=morph.rectangle(3,3)))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_7_2.png" src="../_images/5_tophat_filters_7_2.png" />
+</div>
+</div>
+<p>This time we’ll try a much bigger filter</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_show</span><span class="p">(</span><span class="n">morph</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">morph</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="mi">31</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_50888/2432723452.py:1: FutureWarning: `selem` is a deprecated argument name for `closing`. It will be removed in version 1.0.Please use `footprint` instead.
+  image_show(morph.closing(text, selem=morph.rectangle(31,31)))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_9_2.png" src="../_images/5_tophat_filters_9_2.png" />
+</div>
+</div>
+<p>This looks pretty good - there’s no sign of the text and the brightness pattern is what we’d expect. Now for the black tophat version:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bth</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">black_tophat</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">morph</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="mi">31</span><span class="p">))</span>
+<span class="n">image_show</span><span class="p">(</span><span class="n">bth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ross/.virtualenvs/skimage-tutorials/lib/python3.10/site-packages/skimage/morphology/misc.py:39: FutureWarning: `selem` is a deprecated argument name for `black_tophat`. It will be removed in version 1.0.Please use `footprint` instead.
+  return func(image, footprint=footprint, *args, **kwargs)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_11_2.png" src="../_images/5_tophat_filters_11_2.png" />
+</div>
+</div>
+<p>Some variation in the foreground intensity is visible - text on the right is brighter than the text on the left, but we don’t care about this provided we can now select a resonable threshold. Lets see how the automated methods perform:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">try_all_threshold</span><span class="p">(</span><span class="n">bth</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5_tophat_filters_13_0.png" src="../_images/5_tophat_filters_13_0.png" />
+</div>
+</div>
+<p>Several of the automated methods now perform in what is probably an acceptable fashion, and possibly just as well as the specialised adaptive methods below.</p>
+<p>Another idea that you may explore, depending on the data, is matching the shape of the filter to the characteristics of the brightness variation. In many situations the brightness is highest in the middle and drops towards the edges, so there isn’t much to be gained by changing the filter aspect ratio. However in the text example, the brightness gradient is stronger left to right than top to bottom, so we might like a structuring element that is higher than it is wide.</p>
+</div>
+</div>
+<div class="section" id="potential-problems">
+<h2>Potential problems<a class="headerlink" href="#potential-problems" title="Permalink to this headline">¶</a></h2>
+<p>This approach can fail if the background parts of the image have unusual noise characteristics, such as <em>salt</em> noise consisting of scattered very bright pixels. Such noise, if frequent enough, could lead to over-estimation of background intensity.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Tophat filters are very useful for this class of problems, and quite simple and intuitive to use. Choose a filter that is large enough to remove your largest feature and then proceed with conventional thresholding - no need to write specialised adaptive filters. The process isn’t especially sensitive to the filter size, provided it isn’t too small, and this usually makes it easy to select something useful - don’t be afraid to try a largish structuring element to start with.</p>
+<p>Tophat filters are fast, simple and useful for this class of problems. Other approaches to estimating nonuniformity are possible. For example, a large median filter might be more appropriate if the objects of interest are both brighter and darker than the background. However this requires background pixes occupy more than 50% of the kernel. Other options, that are more computationally complex, have been developed for MRI where there isn’t a useful background to subtract. The N3/N4 family of methods are examples.</p>
+</div>
+<div class="section" id="notes-on-speed">
+<h2>Notes on speed<a class="headerlink" href="#notes-on-speed" title="Permalink to this headline">¶</a></h2>
+<p>In these examples I chose a rectangular filter. Straight edged filters are often considered undesirable because they can leave visible artifacts in the form of corners and straight lines, and these are visible in the estimated background above.</p>
+<p>However the gain is speed. The larger filter in the code above runs in the same time as the smaller one, despite the kernel having 100 times as many pixels. Rectangular morphological filters can be decomposed into a pair of lines, and there are fast algorithms that allow erosions and dilations along lines to be computed in constant time.</p>
+<p>This means we can explore solutions to problems that use morpholgical filters and large rectangular structuring elements without having to worry about speed.</p>
+<p>The two cells below illustrate this with crude timing. The first cell uses a rectangular structuring element and the elapsed time remains constant, while the second cell uses a disk structuring element and the largest time is over 100 times the smallest - i.e complexity is proportional to the number of pixels in the structuring element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time rectanguler structuring elements</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">elapsed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">sz</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">31</span><span class="p">]:</span>
+   <span class="n">tic</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+   <span class="n">a</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">morph</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">))</span>
+   <span class="n">elapsed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="o">-</span><span class="n">tic</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">elapsed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0028833130054408684, 0.002698506010347046, 0.0022097239998402074]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_50888/2448981411.py:7: FutureWarning: `selem` is a deprecated argument name for `closing`. It will be removed in version 1.0.Please use `footprint` instead.
+  a = morph.closing(text, selem=morph.rectangle(sz,sz))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time for circular structuring element</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">sz</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">31</span><span class="p">]:</span>
+   <span class="n">tic</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+   <span class="n">a</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="n">sz</span><span class="p">))</span>
+   <span class="n">elapsed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="o">-</span><span class="n">tic</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">elapsed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">elapsed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">elapsed</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_50888/788014761.py:5: FutureWarning: `selem` is a deprecated argument name for `closing`. It will be removed in version 1.0.Please use `footprint` instead.
+  a = morph.closing(text, selem=morph.disk(sz))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.005785125991678797, 0.04359424200083595, 0.5761546779976925]
+99.59241662608926
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="review-of-threshold-methods">
+<h2>Review of threshold methods<a class="headerlink" href="#review-of-threshold-methods" title="Permalink to this headline">¶</a></h2>
+<p><a id='manual'></a></p>
+<div class="section" id="manual-threshold">
+<h3>Manual threshold<a class="headerlink" href="#manual-threshold" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_show</span><span class="p">(</span><span class="n">text</span><span class="o">&gt;</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_21_1.png" src="../_images/5_tophat_filters_21_1.png" />
+</div>
+</div>
+<p><a id='automatic'></a></p>
+</div>
+<div class="section" id="automatic-threshold-estimation-using-histograms">
+<h3>Automatic threshold estimation using histograms<a class="headerlink" href="#automatic-threshold-estimation-using-histograms" title="Permalink to this headline">¶</a></h3>
+<p>All of the examples below compute a global threshold by analysing the histogram. The methods make different assumptions about brightness distributions and are therefore function best in different circumstances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">try_all_threshold</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5_tophat_filters_23_0.png" src="../_images/5_tophat_filters_23_0.png" />
+</div>
+</div>
+<p><a id='adaptive'></a></p>
+</div>
+<div class="section" id="adaptive-thresholds">
+<h3>Adaptive thresholds<a class="headerlink" href="#adaptive-thresholds" title="Permalink to this headline">¶</a></h3>
+<p>These methods use information from local neighbourhoods to compute a local threshold.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_threshold</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_sauvola</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">image_show</span><span class="p">(</span><span class="n">text</span> <span class="o">&lt;</span> <span class="n">text_threshold</span><span class="p">);</span>
+
+<span class="n">text_threshold</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_niblack</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">window_size</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">image_show</span><span class="p">(</span><span class="n">text</span> <span class="o">&lt;</span> <span class="n">text_threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1152x1152 with 1 Axes&gt;, &lt;AxesSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../_images/5_tophat_filters_25_1.png" src="../_images/5_tophat_filters_25_1.png" />
+<img alt="../_images/5_tophat_filters_25_2.png" src="../_images/5_tophat_filters_25_2.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="4_segmentation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Segmentation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="6_watershed_tricks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Useful segmentation tricks with the watershed transform</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By the scikit-image community<br/>
+    
+        &copy; Copyright 2021, the scikit-image community.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1432 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scikit-image advanced panorama tutorial &#8212; scikit-image Tutorials</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Warping images" href="adv4_warping.html" />
+    <link rel="prev" title="DNA microarray processing" href="adv2_microarray.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/skimage-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">scikit-image Tutorials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../introduction.html">
+   An introduction to scikit-image
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_images_are_arrays.html">
+     Images are numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="1_image_filters.html">
+     Image filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="3_morphological_operations.html">
+     Morphological operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="4_segmentation.html">
+     Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="5_tophat_filters.html">
+     Correcting brightness nonuniformity with tophat filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="6_watershed_tricks.html">
+     Useful segmentation tricks with the watershed transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="three_dimensional_image_processing.html">
+     Introduction to three-dimensional image processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../applications.html">
+   scikit-image applications
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv0_chromosomes.html">
+     Measuring chromatin fluorescence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv1_lesion-quantification.html">
+     Quantifying spinal cord regeneration in zebrafish
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv2_microarray.html">
+     DNA microarray processing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     scikit-image advanced panorama tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv4_warping.html">
+     Warping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="adv5_pores.html">
+     Diatom analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lectures/adv3_panorama-stitching.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-things-first">
+   First things first
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-data">
+   Load data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   0. Pre-processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-detection-and-matching">
+   1. Feature detection and matching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transform-estimation">
+   2. Transform estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warping">
+   3. Warping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extent-of-output-image">
+     Extent of output image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-estimated-transforms">
+     Apply estimated transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-images-the-easy-and-bad-way">
+   4. Combining images the easy (and bad) way
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stitching-images-along-a-minimum-cost-path">
+   5. Stitching images along a minimum-cost path
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seamless-image-stitching-with-minimum-cost-paths-and-skimage-graph">
+   Seamless image stitching with Minimum-Cost Paths and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skimage.graph
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-seed-points">
+     Define seed points
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#construct-cost-array">
+     Construct cost array
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-minimum-cost-path-mcp">
+     Find the minimum-cost path (MCP)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#irregularities">
+     Irregularities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filling-the-mask">
+     Filling the mask
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rinse-and-repeat">
+     Rinse and repeat
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-mask">
+     Final mask
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonus-round-now-in-color">
+   Bonus round: now, in color!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#once-more-from-the-top">
+   Once more, from the top
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>scikit-image advanced panorama tutorial</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-things-first">
+   First things first
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-data">
+   Load data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   0. Pre-processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-detection-and-matching">
+   1. Feature detection and matching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transform-estimation">
+   2. Transform estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warping">
+   3. Warping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extent-of-output-image">
+     Extent of output image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-estimated-transforms">
+     Apply estimated transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-images-the-easy-and-bad-way">
+   4. Combining images the easy (and bad) way
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stitching-images-along-a-minimum-cost-path">
+   5. Stitching images along a minimum-cost path
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seamless-image-stitching-with-minimum-cost-paths-and-skimage-graph">
+   Seamless image stitching with Minimum-Cost Paths and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skimage.graph
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-seed-points">
+     Define seed points
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#construct-cost-array">
+     Construct cost array
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-minimum-cost-path-mcp">
+     Find the minimum-cost path (MCP)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#irregularities">
+     Irregularities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filling-the-mask">
+     Filling the mask
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rinse-and-repeat">
+     Rinse and repeat
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-mask">
+     Final mask
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonus-round-now-in-color">
+   Bonus round: now, in color!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#once-more-from-the-top">
+   Once more, from the top
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="scikit-image-advanced-panorama-tutorial">
+<h1>scikit-image advanced panorama tutorial<a class="headerlink" href="#scikit-image-advanced-panorama-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>Enhanced from the original demo as featured in <a class="reference external" href="https://peerj.com/articles/453/">the scikit-image paper</a>.</p>
+<p>Multiple overlapping images of the same scene, combined into a single image, can yield amazing results. This tutorial will illustrate how to accomplish panorama stitching using scikit-image, from loading the images to cleverly stitching them together.</p>
+<div class="section" id="first-things-first">
+<h2>First things first<a class="headerlink" href="#first-things-first" title="Permalink to this headline">¶</a></h2>
+<p>Import NumPy and matplotlib, then define a utility function to compare multiple images</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="o">*</span><span class="n">images</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility function to display images side by side.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    image0, image1, image2, ... : ndarrray</span>
+<span class="sd">        Images to display.</span>
+<span class="sd">    labels : list</span>
+<span class="sd">        Labels for the different images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)):</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-data">
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ImageCollection</span></code> class provides an easy and efficient way to load and represent multiple images. Images in the <code class="docutils literal notranslate"><span class="pre">ImageCollection</span></code> are not only read from disk when accessed.</p>
+<p>Load a series of images into an <code class="docutils literal notranslate"><span class="pre">ImageCollection</span></code> with a wildcard, as they share similar names.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
+
+<span class="n">pano_imgs</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;../images/pano/JDW_03*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspect these images using the convenience function <code class="docutils literal notranslate"><span class="pre">compare()</span></code> defined earlier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compare(...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Credit: Images of Private Arch and the trail to Delicate Arch in Arches National Park, USA, taken by Joshua D. Warner.<br>
+License: CC-BY 4.0</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="pre-processing">
+<h2>0. Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h2>
+<p>This stage usually involves one or more of the following:</p>
+<ul class="simple">
+<li><p>Resizing, often downscaling with fixed aspect ratio</p></li>
+<li><p>Conversion to grayscale, as some feature descriptors are not defined for color images</p></li>
+<li><p>Cropping to region(s) of interest</p></li>
+</ul>
+<p>For convenience our example data is already resized smaller, and we won’t bother cropping. However, they are presently in color so coversion to grayscale with <code class="docutils literal notranslate"><span class="pre">skimage.color.rgb2gray</span></code> is appropriate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">rgb2gray</span>
+
+<span class="c1"># Make grayscale versions of the three color images in pano_imgs</span>
+<span class="c1"># named pano0, pano1, and pano2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the results using compare()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="feature-detection-and-matching">
+<h2>1. Feature detection and matching<a class="headerlink" href="#feature-detection-and-matching" title="Permalink to this headline">¶</a></h2>
+<p>We need to estimate a projective transformation that relates these images together. The steps will be</p>
+<ol class="simple">
+<li><p>Define one image as a <em>target</em> or <em>destination</em> image, which will remain anchored while the others are warped</p></li>
+<li><p>Detect features in all three images</p></li>
+<li><p>Match features from left and right images against the features in the center, anchored image.</p></li>
+</ol>
+<p>In this three-shot series, the middle image <code class="docutils literal notranslate"><span class="pre">pano1</span></code> is the logical anchor point.</p>
+<p>We detect “Oriented FAST and rotated BRIEF” (ORB) features in both images.</p>
+<p><strong>Note:</strong> For efficiency, in this tutorial we’re finding 800 keypoints. The results are good but small variations are expected. If you need a more robust estimate in practice, run multiple times and pick the best result <em>or</em> generate additional keypoints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">ORB</span>
+
+<span class="c1"># Initialize ORB</span>
+<span class="c1"># This number of keypoints is large enough for robust results, </span>
+<span class="c1"># but low enough to run within a few seconds. </span>
+<span class="n">orb</span> <span class="o">=</span> <span class="n">ORB</span><span class="p">(</span><span class="n">n_keypoints</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">fast_threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Detect keypoints in pano0</span>
+<span class="n">orb</span><span class="o">.</span><span class="n">detect_and_extract</span><span class="p">(</span><span class="n">pano0</span><span class="p">)</span>
+<span class="n">keypoints0</span> <span class="o">=</span> <span class="n">orb</span><span class="o">.</span><span class="n">keypoints</span>
+<span class="n">descriptors0</span> <span class="o">=</span> <span class="n">orb</span><span class="o">.</span><span class="n">descriptors</span>
+
+<span class="c1"># Detect keypoints in pano1 and pano2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">orb</span> <span class="o">=</span> <span class="n">ORB</span><span class="p">(</span><span class="n">n_keypoints</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">fast_threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Detect keypoints in pano0</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">orb</span><span class="o">.</span><span class="n">detect_and_extract</span><span class="p">(</span><span class="n">pano0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">keypoints0</span> <span class="o">=</span> <span class="n">orb</span><span class="o">.</span><span class="n">keypoints</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">descriptors0</span> <span class="o">=</span> <span class="n">orb</span><span class="o">.</span><span class="n">descriptors</span>
+
+<span class="ne">NameError</span>: name &#39;pano0&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Match features from images 0 &lt;-&gt; 1 and 1 &lt;-&gt; 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">match_descriptors</span>
+
+<span class="c1"># Match descriptors between left/right images and the center</span>
+<span class="n">matches01</span> <span class="o">=</span> <span class="n">match_descriptors</span><span class="p">(</span><span class="n">descriptors0</span><span class="p">,</span> <span class="n">descriptors1</span><span class="p">,</span> <span class="n">cross_check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">matches12</span> <span class="o">=</span> <span class="n">match_descriptors</span><span class="p">(</span><span class="n">descriptors1</span><span class="p">,</span> <span class="n">descriptors2</span><span class="p">,</span> <span class="n">cross_check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspect these matched features side-by-side using the convenience function <code class="docutils literal notranslate"><span class="pre">skimage.feature.plot_matches</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">plot_matches</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Best match subset for pano0 -&gt; pano1</span>
+<span class="n">plot_matches</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pano0</span><span class="p">,</span> <span class="n">pano1</span><span class="p">,</span> <span class="n">keypoints0</span><span class="p">,</span> <span class="n">keypoints1</span><span class="p">,</span> <span class="n">matches01</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Most of these line up similarly, but it isn’t perfect. There are a number of obvious outliers or false matches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Best match subset for pano2 -&gt; pano1</span>
+<span class="n">plot_matches</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pano1</span><span class="p">,</span> <span class="n">pano2</span><span class="p">,</span> <span class="n">keypoints1</span><span class="p">,</span> <span class="n">keypoints2</span><span class="p">,</span> <span class="n">matches12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to above, decent signal but numerous false matches.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="transform-estimation">
+<h2>2. Transform estimation<a class="headerlink" href="#transform-estimation" title="Permalink to this headline">¶</a></h2>
+<p>To filter out the false matches, we apply RANdom SAmple Consensus (RANSAC), a powerful method of rejecting outliers available in <code class="docutils literal notranslate"><span class="pre">skimage.transform.ransac</span></code>.  The transformation is estimated using an iterative process based on randomly chosen subsets, finally selecting the model which corresponds best with the majority of matches.</p>
+<p>We need to do this twice, once each for the transforms left -&gt; center and right -&gt; center.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">ProjectiveTransform</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">ransac</span>
+
+<span class="c1"># Select keypoints from</span>
+<span class="c1">#   * source (image to be registered): pano0</span>
+<span class="c1">#   * target (reference image): pano1, our middle frame registration target</span>
+<span class="n">src</span> <span class="o">=</span> <span class="n">keypoints0</span><span class="p">[</span><span class="n">matches01</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]][:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="n">keypoints1</span><span class="p">[</span><span class="n">matches01</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]][:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">model_robust01</span><span class="p">,</span> <span class="n">inliers01</span> <span class="o">=</span> <span class="n">ransac</span><span class="p">((</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">),</span> <span class="n">ProjectiveTransform</span><span class="p">,</span>
+                                   <span class="n">min_samples</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">residual_threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Select keypoints from</span>
+<span class="c1">#   * source (image to be registered): pano2</span>
+<span class="c1">#   * target (reference image): pano1, our middle frame registration target</span>
+<span class="n">src</span> <span class="o">=</span> <span class="n">keypoints2</span><span class="p">[</span><span class="n">matches12</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]][:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="n">keypoints1</span><span class="p">[</span><span class="n">matches12</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]][:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">model_robust12</span><span class="p">,</span> <span class="n">inliers12</span> <span class="o">=</span> <span class="n">ransac</span><span class="p">((</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">),</span> <span class="n">ProjectiveTransform</span><span class="p">,</span>
+                                   <span class="n">min_samples</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">residual_threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">inliers</span></code> returned from RANSAC select the best subset of matches. How do they look?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use plot_matches as before, but select only good matches with fancy indexing</span>
+<span class="c1"># e.g., matches01[inliers01]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use plot_matches as before, but select only good matches with fancy indexing</span>
+<span class="c1"># e.g., matches12[inliers12]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Most of the false matches are rejected!</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="warping">
+<h2>3. Warping<a class="headerlink" href="#warping" title="Permalink to this headline">¶</a></h2>
+<p>Next, we produce the panorama itself. We must <em>warp</em>, or transform, two of the three images so they will properly align with the stationary image.</p>
+<div class="section" id="extent-of-output-image">
+<h3>Extent of output image<a class="headerlink" href="#extent-of-output-image" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to find the shape of the output image to contain all three transformed images. To do this we consider the extents of all warped images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">SimilarityTransform</span>
+
+<span class="c1"># Shape of middle image, our registration target</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">pano1</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Note that transformations take coordinates in (x, y) format,</span>
+<span class="c1"># not (row, column), in order to be consistent with most literature</span>
+<span class="n">corners</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="p">],</span>
+                    <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">]])</span>
+
+<span class="c1"># Warp the image corners to their new positions</span>
+<span class="n">warped_corners01</span> <span class="o">=</span> <span class="n">model_robust01</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
+<span class="n">warped_corners12</span> <span class="o">=</span> <span class="n">model_robust12</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
+
+<span class="c1"># Find the extents of both the reference image and the warped</span>
+<span class="c1"># target image</span>
+<span class="n">all_corners</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">warped_corners01</span><span class="p">,</span> <span class="n">warped_corners12</span><span class="p">,</span> <span class="n">corners</span><span class="p">))</span>
+
+<span class="c1"># The overall output shape will be max - min</span>
+<span class="n">corner_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">all_corners</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">corner_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">all_corners</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">output_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">corner_max</span> <span class="o">-</span> <span class="n">corner_min</span><span class="p">)</span>
+
+<span class="c1"># Ensure integer shape with np.ceil and dtype conversion</span>
+<span class="n">output_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">output_shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-estimated-transforms">
+<h3>Apply estimated transforms<a class="headerlink" href="#apply-estimated-transforms" title="Permalink to this headline">¶</a></h3>
+<p>Warp the images with <code class="docutils literal notranslate"><span class="pre">skimage.transform.warp</span></code> according to the estimated models. A shift, or <em>translation</em> is needed to place as our middle image in the middle - it isn’t truly stationary.</p>
+<p>Values outside the input images are initially set to -1 to distinguish the “background”, which is identified for later use.</p>
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">warp</span></code> takes the <em>inverse</em> mapping as an input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">warp</span>
+
+<span class="c1"># This in-plane offset is the only necessary transformation for the middle image</span>
+<span class="n">offset1</span> <span class="o">=</span> <span class="n">SimilarityTransform</span><span class="p">(</span><span class="n">translation</span><span class="o">=</span> <span class="o">-</span><span class="n">corner_min</span><span class="p">)</span>
+
+<span class="c1"># Translate pano1 into place</span>
+<span class="n">pano1_warped</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano1</span><span class="p">,</span> <span class="n">offset1</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                    <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Acquire the image mask for later use</span>
+<span class="n">pano1_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">pano1_warped</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mask == 1 inside image</span>
+<span class="n">pano1_warped</span><span class="p">[</span><span class="o">~</span><span class="n">pano1_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># Return background values to 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Warp left panel into place</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Warp pano0 to pano1</span>
+<span class="n">transform01</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_robust01</span> <span class="o">+</span> <span class="n">offset1</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span>
+<span class="n">pano0_warped</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano0</span><span class="p">,</span> <span class="n">transform01</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                    <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pano0_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">pano0_warped</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mask == 1 inside image</span>
+<span class="n">pano0_warped</span><span class="p">[</span><span class="o">~</span><span class="n">pano0_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># Return background values to 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Warp right panel into place</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Warp pano2 to pano1</span>
+<span class="n">transform12</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_robust12</span> <span class="o">+</span> <span class="n">offset1</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span>
+<span class="n">pano2_warped</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano2</span><span class="p">,</span> <span class="n">transform12</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                    <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pano2_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">pano2_warped</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mask == 1 inside image</span>
+<span class="n">pano2_warped</span><span class="p">[</span><span class="o">~</span><span class="n">pano2_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># Return background values to 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspect the warped images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare</span><span class="p">(</span><span class="n">pano0_warped</span><span class="p">,</span> <span class="n">pano1_warped</span><span class="p">,</span> <span class="n">pano2_warped</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="combining-images-the-easy-and-bad-way">
+<h2>4. Combining images the easy (and bad) way<a class="headerlink" href="#combining-images-the-easy-and-bad-way" title="Permalink to this headline">¶</a></h2>
+<p>This method simply</p>
+<ol class="simple">
+<li><p>sums the warped images</p></li>
+<li><p>tracks how many images overlapped to create each  point</p></li>
+<li><p>normalizes the result.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the three warped images together. This could create dtype overflows!</span>
+<span class="c1"># We know they are are floating point images after warping, so it&#39;s OK.</span>
+<span class="n">merged</span> <span class="o">=</span>  <span class="c1">## Sum warped images</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Track the overlap by adding the masks together</span>
+<span class="n">overlap</span> <span class="o">=</span>  <span class="c1">## Sum masks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalize through division by `overlap` - but ensure the minimum is 1</span>
+<span class="n">normalized</span> <span class="o">=</span> <span class="n">merged</span> <span class="o">/</span>   <span class="c1">## Divisor here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, view the results!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalized</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div style="height: 400px;"></div><p><strong>What happened?!</strong> Why are there nasty dark lines at boundaries, and why does the middle look so blurry?</p>
+<p>The <strong>lines are artifacts (boundary effect) from the warping method</strong>. When the image is warped with interpolation, edge pixels containing part image and part background combine these values. We would have bright lines if we’d chosen <code class="docutils literal notranslate"><span class="pre">cval=2</span></code> in the <code class="docutils literal notranslate"><span class="pre">warp</span></code> calls (try it!), but regardless of choice there will always be discontinuities.</p>
+<p>…Unless you use <code class="docutils literal notranslate"><span class="pre">order=0</span></code> in <code class="docutils literal notranslate"><span class="pre">warp</span></code>, which is nearest neighbor. Then edges are perfect (try it!). But who wants to be limited to an inferior interpolation method?</p>
+<p>Even then, it’s blurry! Is there a better way?</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="stitching-images-along-a-minimum-cost-path">
+<h2>5. Stitching images along a minimum-cost path<a class="headerlink" href="#stitching-images-along-a-minimum-cost-path" title="Permalink to this headline">¶</a></h2>
+<p>Let’s step back a moment and consider: Is it even reasonable to blend pixels?</p>
+<p>Take a look at a <em>difference image</em>, which is just one image subtracted from the other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Generate difference image and inspect it</span>
+<span class="n">difference_image</span> <span class="o">=</span> <span class="n">pano0_warped</span> <span class="o">-</span> <span class="n">pano1_warped</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">difference_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The surrounding flat gray is zero. <em>A perfect overlap would show no structure!</em></p>
+<p>Instead, the overlap region matches fairly well in the middle… but off to the sides where things start to look a little embossed, a simple average blurs the result. This caused the blurring in the previous, method (look again). <em>Unfortunately, this is almost always the case for panoramas!</em></p>
+<p>How can we fix this?</p>
+<p>Let’s attempt to find a vertical path through this difference image which stays as close to zero as possible. If we use that to build a mask, defining a transition between images, the result should appear <em>seamless</em>.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="seamless-image-stitching-with-minimum-cost-paths-and-skimage-graph">
+<h2>Seamless image stitching with Minimum-Cost Paths and <code class="docutils literal notranslate"><span class="pre">skimage.graph</span></code><a class="headerlink" href="#seamless-image-stitching-with-minimum-cost-paths-and-skimage-graph" title="Permalink to this headline">¶</a></h2>
+<p>Among other things, <code class="docutils literal notranslate"><span class="pre">skimage.graph</span></code> allows you to</p>
+<ul class="simple">
+<li><p>start at any point on an array</p></li>
+<li><p>find the path to any other point in the array</p></li>
+<li><p>the path found <em>minimizes</em> the sum of values on the path.</p></li>
+</ul>
+<p>The array is called a <em>cost array</em>, while the path found is a <em>minimum-cost path</em> or <strong>MCP</strong>.</p>
+<p>To accomplish this we need</p>
+<ul class="simple">
+<li><p>Starting and ending points for the path</p></li>
+<li><p>A cost array (a modified difference image)</p></li>
+</ul>
+<p>This method is so powerful that, with a carefully constructed cost array, the seed points are essentially irrelevant. It just works!</p>
+<div class="section" id="define-seed-points">
+<h3>Define seed points<a class="headerlink" href="#define-seed-points" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmax</span> <span class="o">=</span> <span class="n">output_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">cmax</span> <span class="o">=</span> <span class="n">output_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1"># Start anywhere along the top and bottom, left of center.</span>
+<span class="n">mask_pts01</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>    <span class="n">cmax</span> <span class="o">//</span> <span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">rmax</span><span class="p">,</span> <span class="n">cmax</span> <span class="o">//</span> <span class="mi">3</span><span class="p">]]</span>
+
+<span class="c1"># Start anywhere along the top and bottom, right of center.</span>
+<span class="n">mask_pts12</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>    <span class="mi">2</span><span class="o">*</span><span class="n">cmax</span> <span class="o">//</span> <span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">rmax</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">cmax</span> <span class="o">//</span> <span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="construct-cost-array">
+<h3>Construct cost array<a class="headerlink" href="#construct-cost-array" title="Permalink to this headline">¶</a></h3>
+<p>This utility function exists to give a “cost break” for paths from the edge to the overlap region.</p>
+<p>We will visually explore the results shortly. Examine the code later - for now, just use it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">flood_fill</span>
+
+<span class="k">def</span> <span class="nf">generate_costs</span><span class="p">(</span><span class="n">diff_image</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gradient_cutoff</span><span class="o">=</span><span class="mf">2.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ensures equal-cost paths from edges to region of interest.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    diff_image : ndarray of floats</span>
+<span class="sd">        Difference of two overlapping images.</span>
+<span class="sd">    mask : ndarray of bools</span>
+<span class="sd">        Mask representing the region of interest in ``diff_image``.</span>
+<span class="sd">    vertical : bool</span>
+<span class="sd">        Control operation orientation.</span>
+<span class="sd">    gradient_cutoff : float</span>
+<span class="sd">        Controls how far out of parallel lines can be to edges before</span>
+<span class="sd">        correction is terminated. The default (2.) is good for most cases.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    costs_arr : ndarray of floats</span>
+<span class="sd">        Adjusted costs array, ready for use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">vertical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tweak_costs</span><span class="p">(</span><span class="n">diff_image</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="n">vertical</span><span class="p">,</span>
+                           <span class="n">gradient_cutoff</span><span class="o">=</span><span class="n">gradient_cutoff</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Start with a high-cost array of 1&#39;s</span>
+    <span class="n">costs_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">diff_image</span><span class="p">)</span>
+
+    <span class="c1"># Obtain extent of overlap</span>
+    <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
+    <span class="n">cmin</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">cmax</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Label discrete regions</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="n">cslice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">cmin</span><span class="p">,</span> <span class="n">cmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">submask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">labels</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">])</span>
+    <span class="n">submask</span> <span class="o">=</span> <span class="n">flood_fill</span><span class="p">(</span><span class="n">submask</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">submask</span> <span class="o">=</span> <span class="n">flood_fill</span><span class="p">(</span><span class="n">submask</span><span class="p">,</span> <span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">labels</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">=</span> <span class="n">submask</span>
+
+    <span class="c1"># Find distance from edge to region</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="c1"># Reject areas of high change</span>
+    <span class="n">ugood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="n">cslice</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="n">gradient_cutoff</span>
+    <span class="n">lgood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">cslice</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="n">gradient_cutoff</span>
+
+    <span class="c1"># Give areas slightly farther from edge a cost break</span>
+    <span class="n">costs_upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span>
+    <span class="n">costs_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span>
+    <span class="n">costs_upper</span><span class="p">[</span><span class="n">cslice</span><span class="p">][</span><span class="n">ugood</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper</span><span class="p">[</span><span class="n">cslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="n">cslice</span><span class="p">][</span><span class="n">ugood</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">costs_lower</span><span class="p">[</span><span class="n">cslice</span><span class="p">][</span><span class="n">lgood</span><span class="p">]</span> <span class="o">=</span> <span class="n">lower</span><span class="p">[</span><span class="n">cslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">cslice</span><span class="p">][</span><span class="n">lgood</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Expand from 1d back to 2d</span>
+    <span class="n">vdist</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">costs_upper</span> <span class="o">=</span> <span class="n">costs_upper</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">vdist</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">costs_lower</span> <span class="o">=</span> <span class="n">costs_lower</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">vdist</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Place these in output array</span>
+    <span class="n">costs_arr</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">=</span> <span class="n">costs_upper</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">labels</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">costs_arr</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">costs_lower</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">labels</span><span class="p">[:,</span> <span class="n">cslice</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Finally, place the difference image</span>
+    <span class="n">costs_arr</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_image</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">costs_arr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use this function to generate the cost array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with the absolute value of the difference image.</span>
+<span class="c1"># np.abs necessary because we don&#39;t want negative costs!</span>
+<span class="n">costs01</span> <span class="o">=</span> <span class="n">generate_costs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pano0_warped</span> <span class="o">-</span> <span class="n">pano1_warped</span><span class="p">),</span>
+                         <span class="n">pano0_mask</span> <span class="o">&amp;</span> <span class="n">pano1_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Allow the path to “slide” along top and bottom edges to the optimal horizontal position by setting top and bottom edges to zero cost.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set top and bottom edges to zero in `costs01`</span>
+<span class="c1"># Remember (row, col) indexing!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our cost array now looks like this</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">costs01</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The tweak we made with <code class="docutils literal notranslate"><span class="pre">generate_costs</span></code> is subtle but important. Can you see it?</p>
+</div>
+<div class="section" id="find-the-minimum-cost-path-mcp">
+<h3>Find the minimum-cost path (MCP)<a class="headerlink" href="#find-the-minimum-cost-path-mcp" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">skimage.graph.route_through_array</span></code> to find an optimal path through the cost array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.graph</span> <span class="kn">import</span> <span class="n">route_through_array</span>
+
+<span class="c1"># Arguments are:</span>
+<span class="c1">#   cost array</span>
+<span class="c1">#   start pt</span>
+<span class="c1">#   end pt</span>
+<span class="c1">#   can it traverse diagonally</span>
+<span class="n">pts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">route_through_array</span><span class="p">(</span><span class="n">costs01</span><span class="p">,</span> <span class="n">mask_pts01</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mask_pts01</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fully_connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Convert list of lists to 2d coordinate array for easier indexing</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Did it work?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Plot the difference image</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano0_warped</span> <span class="o">-</span> <span class="n">pano1_warped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overlay the minimum-cost path</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>  
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That looks like a great seam to stitch these images together - the path looks very close to zero.</p>
+</div>
+<div class="section" id="irregularities">
+<h3>Irregularities<a class="headerlink" href="#irregularities" title="Permalink to this headline">¶</a></h3>
+<p>Due to the random element in the RANSAC transform estimation, everyone will have a slightly different blue path. <strong>Your path will look different from mine, and different from your neighbor’s.</strong> That’s expected! <em>The awesome thing about MCP is that everyone just calculated the best possible path to stitch together their unique transforms!</em></p>
+</div>
+<div class="section" id="filling-the-mask">
+<h3>Filling the mask<a class="headerlink" href="#filling-the-mask" title="Permalink to this headline">¶</a></h3>
+<p>Turn that path into a mask, which will be 1 where we want the left image to show through and zero elsewhere. We need to fill the left side of the mask with ones over to our path.</p>
+<p><strong>Note</strong>: This is the inverse of NumPy masked array conventions (<code class="docutils literal notranslate"><span class="pre">numpy.ma</span></code>), which specify a negative mask (mask == bad/missing) rather than a positive mask as used here (mask == good/selected).</p>
+<p>Place the path into a new, empty array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with an array of zeros and place the path</span>
+<span class="n">mask0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">pano0_warped</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">mask0</span><span class="p">[</span><span class="n">pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ensure the path appears as expected</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># View the path in black and white</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Label the various contiguous regions in the image using <code class="docutils literal notranslate"><span class="pre">skimage.measure.label</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">flood_fill</span>
+
+<span class="c1"># Labeling starts with one at point (0, 0)</span>
+<span class="n">mask0</span> <span class="o">=</span> <span class="n">flood_fill</span><span class="p">(</span><span class="n">mask0</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks great!</p>
+</div>
+<div class="section" id="rinse-and-repeat">
+<h3>Rinse and repeat<a class="headerlink" href="#rinse-and-repeat" title="Permalink to this headline">¶</a></h3>
+<p>Apply the same principles to images 1 and 2: first, build the cost array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with the absolute value of the difference image.</span>
+<span class="c1"># np.abs is necessary because we don&#39;t want negative costs!</span>
+<span class="n">costs12</span> <span class="o">=</span> <span class="n">generate_costs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pano1_warped</span> <span class="o">-</span> <span class="n">pano2_warped</span><span class="p">),</span>
+                         <span class="n">pano1_mask</span> <span class="o">&amp;</span> <span class="n">pano2_mask</span><span class="p">)</span>
+
+<span class="c1"># Allow the path to &quot;slide&quot; along top and bottom edges to the optimal </span>
+<span class="c1"># horizontal position by setting top and bottom edges to zero cost</span>
+<span class="n">costs12</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">costs12</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Add an additional constraint this time</strong>, to prevent this path crossing the prior one!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">costs12</span><span class="p">[</span><span class="n">mask0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">costs12</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Your results may look slightly different.</p>
+<p>Compute the minimal cost path</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Arguments are:</span>
+<span class="c1">#   cost array</span>
+<span class="c1">#   start pt</span>
+<span class="c1">#   end pt</span>
+<span class="c1">#   can it traverse diagonally</span>
+<span class="n">pts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">route_through_array</span><span class="p">(</span><span class="n">costs12</span><span class="p">,</span> <span class="n">mask_pts12</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mask_pts12</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fully_connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Convert list of lists to 2d coordinate array for easier indexing</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verify a reasonable result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Plot the difference image</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano1_warped</span> <span class="o">-</span> <span class="n">pano2_warped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overlay the minimum-cost path</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]);</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize the mask by placing the path in a new array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">pano0_warped</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">mask2</span><span class="p">[</span><span class="n">pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fill the right side this time, again using <code class="docutils literal notranslate"><span class="pre">skimage.measure.label</span></code> - the label of interest is 3</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask2</span> <span class="o">=</span> <span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">background</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># The result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="final-mask">
+<h3>Final mask<a class="headerlink" href="#final-mask" title="Permalink to this headline">¶</a></h3>
+<p>The last mask for the middle image is one of exclusion - it will be displayed everywhere <code class="docutils literal notranslate"><span class="pre">mask0</span></code> and <code class="docutils literal notranslate"><span class="pre">mask2</span></code> are not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask1</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">mask0</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span> <span class="o">|</span> <span class="n">mask2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define a convenience function to place masks in alpha channels</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_alpha</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds a masked alpha channel to an image.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    img : (M, N[, 3]) ndarray</span>
+<span class="sd">        Image data, should be rank-2 or rank-3 with RGB channels</span>
+<span class="sd">    mask : (M, N[, 3]) ndarray, optional</span>
+<span class="sd">        Mask to be applied. If None, the alpha channel is added</span>
+<span class="sd">        with full opacity assumed (1) at all locations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">gray2rgb</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        
+    <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">gray2rgb</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtain final, alpha blended individual images and inspect them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pano0_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano0_warped</span><span class="p">,</span> <span class="n">mask0</span><span class="p">)</span>
+<span class="n">pano1_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano1_warped</span><span class="p">,</span> <span class="n">mask1</span><span class="p">)</span>
+<span class="n">pano2_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano2_warped</span><span class="p">,</span> <span class="n">mask2</span><span class="p">)</span>
+
+<span class="n">compare</span><span class="p">(</span><span class="n">pano0_final</span><span class="p">,</span> <span class="n">pano1_final</span><span class="p">,</span> <span class="n">pano2_final</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we have here is the world’s most complicated and precisely-fitting jigsaw puzzle…</p>
+<p>Plot all three together and view the results!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># This is a perfect combination, but matplotlib&#39;s interpolation</span>
+<span class="c1"># makes it appear to have gaps. So we turn it off.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano0_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano1_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano2_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fantastic! Without the black borders, you’d never know this was composed of separate images!</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="bonus-round-now-in-color">
+<h2>Bonus round: now, in color!<a class="headerlink" href="#bonus-round-now-in-color" title="Permalink to this headline">¶</a></h2>
+<p>We converted to grayscale for ORB feature detection, back in the initial <strong>preprocessing</strong> steps. Since we stored our transforms and masks, adding color is straightforward!</p>
+<p>Transform the colored images</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identical transforms as before, except</span>
+<span class="c1">#   * Operating on original color images</span>
+<span class="c1">#   * filling with cval=0 as we know the masks</span>
+<span class="n">pano0_color</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano_imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">model_robust01</span> <span class="o">+</span> <span class="n">offset1</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">pano1_color</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano_imgs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">offset1</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">pano2_color</span> <span class="o">=</span> <span class="n">warp</span><span class="p">(</span><span class="n">pano_imgs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">model_robust12</span> <span class="o">+</span> <span class="n">offset1</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apply the custom alpha channel masks</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pano0_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano0_color</span><span class="p">,</span> <span class="n">mask0</span><span class="p">)</span>
+<span class="n">pano1_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano1_color</span><span class="p">,</span> <span class="n">mask1</span><span class="p">)</span>
+<span class="n">pano2_final</span> <span class="o">=</span> <span class="n">add_alpha</span><span class="p">(</span><span class="n">pano2_color</span><span class="p">,</span> <span class="n">mask2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>View the result!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Turn off matplotlib&#39;s interpolation</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano0_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano1_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pano2_final</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the combined, color panorama locally as <code class="docutils literal notranslate"><span class="pre">'./pano-advanced-output.png'</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">gray2rgb</span>
+
+<span class="c1"># Start with empty image</span>
+<span class="n">pano_combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">pano0_color</span><span class="p">)</span>
+
+<span class="c1"># Place the masked portion of each image into the array</span>
+<span class="c1"># masks are 2d, they need to be (M, N, 3) to match the color images</span>
+<span class="n">pano_combined</span> <span class="o">+=</span> <span class="n">pano0_color</span> <span class="o">*</span> <span class="n">gray2rgb</span><span class="p">(</span><span class="n">mask0</span><span class="p">)</span>
+<span class="n">pano_combined</span> <span class="o">+=</span> <span class="n">pano1_color</span> <span class="o">*</span> <span class="n">gray2rgb</span><span class="p">(</span><span class="n">mask1</span><span class="p">)</span>
+<span class="n">pano_combined</span> <span class="o">+=</span> <span class="n">pano2_color</span> <span class="o">*</span> <span class="n">gray2rgb</span><span class="p">(</span><span class="n">mask2</span><span class="p">)</span>
+
+
+<span class="c1"># Save the output - precision loss warning is expected</span>
+<span class="c1"># moving from floating point -&gt; uint8</span>
+<span class="n">io</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s1">&#39;./pano-advanced-output.png&#39;</span><span class="p">,</span> <span class="n">pano_combined</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div style="height: 400px;"></div><div style="height: 400px;"></div></div>
+<div class="section" id="once-more-from-the-top">
+<h2>Once more, from the top<a class="headerlink" href="#once-more-from-the-top" title="Permalink to this headline">¶</a></h2>
+<p>I hear what you’re saying. “But Josh, those were too easy! The panoramas had too much overlap! Does this still work in the real world?”</p>
+<p><strong>Go back to the top. Under “Load Data” replace the string <code class="docutils literal notranslate"><span class="pre">'data/JDW_03*'</span></code> with <code class="docutils literal notranslate"><span class="pre">'data/JDW_9*'</span></code>, and re-run all of the cells in order.</strong></p>
+<hr class="docutils" />
+<div style="height: 400px;"></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> load_style
+<span class="o">%</span><span class="k">load_style</span> ../themes/tutorial.css
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="adv2_microarray.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DNA microarray processing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="adv4_warping.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Warping images</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By the scikit-image community<br/>
+    
+        &copy; Copyright 2021, the scikit-image community.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
